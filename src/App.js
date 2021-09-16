@@ -6,6 +6,7 @@ import A_header from './A_header';
 import A_URL from './A_URL';
 import API, { endpoints } from './API';
 import cookies from 'react-cookies';
+import A_formRegister from './A_formRegister';
 
 
 export let UserContext = React.createContext() 
@@ -15,8 +16,8 @@ export default function App(props) {
 
   const login = async (username, password) => {
     let res = await API.post(endpoints['login'], {
-        'client_id':'uMeUDBqCKKZI0iU7vlJHGi7PHHS2krpPowRmXsEM',
-        'client_secret':'AZziVU1uADSoy2bNVwUm5qjN3XnnjLwpq35VDi7gtQl1Otcz7HEQOZUoZzPxIprHPmOYWcFVrqTL8p18Ssv6GOrPwW6n6i4VOxPLw2iebvgaTKYWPjurybYhCncB4X7c',
+        'client_id':'SArs1A6NOuDoUlmbPXmupesRc44gLu2SwIIRlrze',
+        'client_secret':'esEGDwhYOm2nlCjHe3o2qeZQzpWGjVJDejPQElcJMlbLrytueqZD3W9kA1hsQjx6BFCNh6447OXtQZGKablmbQ6IFVNymtbFmdkv0B8fz7CVBjMVIotYU7HEORj2nRUH',
         'username':username,
         'password':password,
         'grant_type':'password'
@@ -44,6 +45,7 @@ export default function App(props) {
           <A_header/>
           <A_about/>
           <A_URL/>
+          <A_formRegister/>
         </div>
       </BrowserRouter>
     </UserContext.Provider>

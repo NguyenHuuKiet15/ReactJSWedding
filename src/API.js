@@ -7,7 +7,8 @@ export let endpoints = {
 'weddinghalls': '/weddinghalls/',
 'login':'/o/token/',
 'current-user': '/users/current-user/',
-'users': '/users/'
+'users': '/users/',
+'weddings': '/weddings/'
 }
 
 export let AuthAPI = axios.create({

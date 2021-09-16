@@ -32,8 +32,8 @@ export default function A_header() {
     if(cookies.load("user") != null)
         user = cookies.load("user")
     let r = <>
-        <li><Link to="/login">Đăng nhập</Link></li> 
-        <li><Link to="/register">Đăng kí</Link></li>
+        <li ><Link to="/login">Đăng nhập</Link></li>
+        <li style ={{borderRight:'none'}}><Link to="/register">Đăng kí</Link></li>
     </>
     if(user !=null)
         r= <li><Link to="/">Welcome {user.username}</Link></li>
@@ -41,6 +41,13 @@ export default function A_header() {
         <div>
             <section class="header">
                 <div class="contai">
+                <div class="contact">
+                            <nav>
+                                <ul>
+                                    {r}
+                                </ul>
+                            </nav>
+                        </div>
                     <div class="row">
                         <div class="muli">
                             <div class="search">
@@ -49,7 +56,7 @@ export default function A_header() {
                                 </div>
                             </div>
                         </div>
-                        <div class="menu-bar-left">
+                        <div class="menu-bar">
                             <nav>
                                 <ul class="menu-bar-left-items row">
                                     <li><i class="fas fa-search fa"></i> </li>
@@ -73,14 +80,22 @@ export default function A_header() {
                             </nav>
                         </div>
                         <div class="logo">
-                            <img src="images/logo/logo.svg" alt="" />
+                            <a href="http://localhost:3000/"><img src="images/logo/logo.svg" /></a>
+                            
                         </div>
-                        <div class="menu-bar-right">
+                        <div class="menu-bar">
                             <nav>
                                 <ul class="menu-bar-right-food row">
-                                    <li><a href="#">Liên hệ</a></li>
-                                    {r} 
-                                    <li><button class="btOrder">Đặt tiệc</button></li>
+                                        <li><a href="#">Liên hệ</a></li>
+                                        <li class="menu-bar-items-sub">
+                                            <a href="#">Blog</a>
+                                            <ul class="menu-bar-items-sub1">
+                                                <li><a href="#">Thực đơn</a></li>
+                                                <li><a href="#">Thực đơn</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Tuyển dụng</a></li>
+                                        <li><button class="btOrder">Đặt tiệc</button></li>
                                 </ul>
                             </nav>
                         </div>
