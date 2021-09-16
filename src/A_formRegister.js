@@ -17,7 +17,7 @@ class A_formRegister extends React.Component {
     componentDidMount() {
         API.get(endpoints['weddings']).then(res => {
             this.setState({
-                "weddings": res.data.results,
+                "weddings": res.data.results
 
             })
         })
@@ -26,12 +26,9 @@ class A_formRegister extends React.Component {
         const dl = event.target.value
         var newStateArray = this.state.tempData.slice();
         newStateArray.push(dl);
-        
         this.setState({
             tempData : Array.from(new Set(newStateArray))
         })
-        
-        
         console.log(this.state.tempData)
     }
     getText = (data) => {
@@ -47,13 +44,7 @@ class A_formRegister extends React.Component {
             for (let k = 0; k < this.state.getData.length; k++){
                 if (item.organization_date.indexOf(this.state.getData[k]) !== -1 ||  item.name.indexOf(this.state.getData[k]) !== -1 ||
                 (item.organization_date.indexOf(this.state.getData[k]) !== -1 &&  item.name.indexOf(this.state.getData[k]) !== -1)) {
-                    arrayData.push({
-                        "id": item.id,
-                        "name": item.name,
-                        "date": item.organization_date,
-                        "shift": item.shift,
-                        "wedding_hall": item.wedding_hall,
-                    },)
+                    arrayData.push(item)
                     break
                 }
             }
@@ -61,7 +52,7 @@ class A_formRegister extends React.Component {
            
         })
         console.log(this.state.getData.length)
-        // console.log(arrayData)
+        console.log(arrayData)
 
         return (
             <>
@@ -147,8 +138,8 @@ class A_formRegister extends React.Component {
                                         </thead>
                                         <tbody>
                                             {arrayData.map(x => (
-                                                <A_Row name={x.name} stt={x.id} date={x.date}
-                                                    shift={x.shift} wedding_hall={x.wedding_hall} />
+                                                <A_Row name={x.name} stt={x.id} date={x.organization_date}
+                                                    shift={x.shift.name} wedding_hall={x.wedding_hall.name} />
                                             ))}
 
                                         </tbody>
