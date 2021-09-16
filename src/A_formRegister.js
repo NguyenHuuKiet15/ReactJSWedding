@@ -45,11 +45,11 @@ class A_formRegister extends React.Component {
                 if (item.organization_date.indexOf(this.state.getData[k]) !== -1 ||  item.name.indexOf(this.state.getData[k]) !== -1 ||
                 (item.organization_date.indexOf(this.state.getData[k]) !== -1 &&  item.name.indexOf(this.state.getData[k]) !== -1)) {
                     arrayData.push(item)
+                    // Array.from(new Set(arrayData))
                     break
                 }
-            }
-
-           
+               
+            }  
         })
         console.log(this.state.getData.length)
         console.log(arrayData)
@@ -59,7 +59,7 @@ class A_formRegister extends React.Component {
                 <section className="locator-store">
                     <div className="obj">
                         <div className="locator-store-title center">
-                            <h2>Đăng kí đặt chỗ</h2>
+                            <h2>Đăng kí đặt tiệc</h2>
                         </div>
                         <div className="content-contact-inner">
                             <div className="order-party-form">
