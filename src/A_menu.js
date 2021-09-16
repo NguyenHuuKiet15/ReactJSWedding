@@ -4,14 +4,14 @@ import API, { endpoints } from './API';
 class A_menu extends React.Component {
     constructor (){
         super()
-        this.state = {"menu" : []}
+        this.state = {"menus" : []}
     }
     
     componentDidMount() {
-        API.get(endpoints['menu']).then(res => {
+        API.get(endpoints['menus']).then(res => {
             console.info(res.data.results)
             this.setState({
-                "menu": res.data.results
+                "menus": res.data.results
             })
         })
     }
@@ -29,20 +29,19 @@ class A_menu extends React.Component {
         putMenu.querySelector(Target).classList.add("active")
         }       
     }
-
-    zoomImg = () => {
-        const bigImg = document.querySelector(".zoomOver img")
-        const smallImg = document.querySelectorAll(".food-list-itme img")
-        smallImg.forEach(imgItem => {
-            bigImg.src = imgItem.src
-            document.querySelector(".zoomOver-wrap").style.display = "flex"
-            
-        })  
-    }
     closePic = () => {
-         document.querySelector(".zoomOver-wrap").style.display = 'none';
-        
+           document.querySelector(".zoomOver-wrap").style.display = "none" 
     }
+
+    zoomImg(){
+        const bigImg = document.querySelector(".zoomOver img")
+        const smallImg =  document.querySelectorAll(".food-list-itme img")
+        smallImg.forEach(imgItem =>
+            imgItem .addEventListener("click",function(){
+                bigImg.src = imgItem.src
+                document.querySelector(".zoomOver-wrap").style.display="flex"
+            })
+         )};
 
     render() {
         return (
@@ -109,27 +108,27 @@ class A_menu extends React.Component {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="food-title">
+                    <div className="food-title">
                         <div className="food-title-txt center">
                             <h2>Thực đơn tiệc cưới mới nhất 2021</h2>
                         </div>
                         <p>Trung tâm tiệc cưới Melisa phục vụ hơn 150 món ăn phong cách Âu – Á</p>
                     </div>
-                    <div className
-                    ="food-list" onClick = { this.zoomImg }>
+                    <div className="food-list" onClick = { this.zoomImg }>
                         <div className="food-list-itme">
                         
-                            {this.state.menu.map( c => 
-                                    <img src = {c.image.replace("http://127.0.0.1:8000/", "http://127.0.0.1:8000/static/")}  />  
+                            {this.state.menus.map( c => 
+                                    <img src = {c.image}  />  
                             )}
                         </div>
-                        <div className="zoomOver-wrap">
+                        
+                    </div>
+                    <div className="zoomOver-wrap">
                             <div className="zoomOver">
                                 <span><i className="far fa-times-circle" onClick ={this.closePic} style={{ color: 'black !important', fontSize: '40px', cursor: 'pointer' }} /></span>
                                 <img style={{ width: '100%' }} src="images/food/menu1.jpg" />
                             </div>
-                        </div>
-                    </div> */}
+                    </div>
 
                 </section>
 
