@@ -50,7 +50,7 @@ class A_formRegister extends React.Component {
                 [ten]: dl
         })
         
-        console.log(this.state.temp)
+        console.log(this.state)
        
     }
     inPutInfo = () => {
