@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import './A_style.css' ;
 import cookies from 'react-cookies'
 import { UserContext } from './App';
 
@@ -16,7 +15,7 @@ export default function A_header() {
         const bar = document.querySelector(".row")
         const x = this.pageYOffset
         if (x > 150) {
-            header.classList.add("active")
+            header.classList.add('active')
             bar.classList.add("active")
         }
         else {
