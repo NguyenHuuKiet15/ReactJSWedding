@@ -20,17 +20,30 @@ export default function App(props) {
 
 
   const [lgShow, setLgShow] = useState(false);
-  const handleClose = () => setLgShow(false);
+  const handleClose = () => {
+    setLgShow(false)
+  };
   const handleShow = (event) => {
     event.preventDefault()
     setLgShow(true)
   };
 
   const infWed = (info) => {
-    console.log("ket nối r ok ok")
+    // console.log("ket nối r ok ok")
     setInFo(info)
-    console.log(InFo)
+    // console.log(InFo)
   }
+  const pushData = () => {
+
+    API.post(endpoints['weddings'], InFo, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => {
+      console.info(res)
+    }).catch(err => console.error(err))
+  }
+
 
   const login = async (username, password) => {
     let res = await API.post(endpoints['login'], {
@@ -40,7 +53,6 @@ export default function App(props) {
       'password': password,
       'grant_type': 'password'
     })
-    console.info(res.data)
 
     cookies.save("access_token", res.data.access_token)
 
@@ -53,7 +65,7 @@ export default function App(props) {
     cookies.save("user", user.data)
     setUser(user)
 
-    
+
 
   }
 
@@ -65,26 +77,26 @@ export default function App(props) {
           <A_about />
           <A_URL />
           <A_formRegister
-            getIf = {(info) => infWed(info) }
-           open={ handleShow}
+            getIf={(info) => infWed(info)}
+            open={handleShow}
           />
         </div>
 
         <>
           <Modal show={lgShow} onHide={handleClose}
-          size="lg"
-          show={lgShow}
-          onHide={() => setLgShow(false)}
-          aria-labelledby="example-modal-sizes-title-lg">
+            size="lg"
+            show={lgShow}
+            onHide={() => setLgShow(false)}
+            aria-labelledby="example-modal-sizes-title-lg">
             <Modal.Header closeButton id="example-modal-sizes-title-lg">
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <A_modal temInfo = {InFo}/>
+              <A_modal temInfo={InFo} />
             </Modal.Body>
             <Modal.Footer>
-              <Button style ={{margin: "0"}} variant="primary" onClick={handleClose}>
-               Thanh toán
+              <Button style={{ margin: "0" }} variant="primary" onClick={handleClose}>
+                <p onClick={() => pushData()}>Thanh toán</p>
               </Button>
               <Button variant="danger" onClick={handleClose}>
                 Hủy

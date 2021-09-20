@@ -13,11 +13,13 @@ class A_formRegister extends React.Component {
             "weddings": [],
             "tempData": [],
             "getData": [],
-            "stk":"" , 
+            // "sdt":"" , 
             "name":"" , 
             "shift":"" , 
-            "date":"" ,
-            "hall":"" ,    
+            "organization_date":"" ,
+            "menu":"" ,
+            "service":[] ,
+            "wedding_hall":"" ,
         }
     }
     componentDidMount() {
@@ -46,20 +48,23 @@ class A_formRegister extends React.Component {
     isChange2 = (event) => {
         const dl = event.target.value
         const ten = event.target.name
+       
         this.setState({
                 [ten]: dl
         })
         
-        console.log(this.state)
+        // console.log(this.state)
        
     }
     inPutInfo = () => {
         var array = {}
-        array.stk = this.state.stk
+        // array.sdt = this.state.sdt
         array.name = this.state.name
         array.shift = this.state.shift
-        array.date = this.state.date
-        array.hall = this.state.hall
+        array.organization_date = this.state.organization_date
+        array.wedding_hall = this.state.wedding_hall
+        array.menu = this.state.menu
+        array.service = this.state.service
         this.props.getIf(array)
     }
 
@@ -90,46 +95,70 @@ class A_formRegister extends React.Component {
                             <div className="order-party-form">
                                 <form>
                                     <div className="email-nCustomer input">
-                                        <div className="stk label">
-                                            <div><p>Số tk:</p></div>
-                                            <input name = "stk" type="text"  onChange={(event) => this.isChange2(event)}/>
-                                        </div>
-                                        <div className="nCustomer label">
-                                            <div><p>Số lượng khách:</p></div>
-                                            <input type="number" id="number" />
-                                        </div>
-                                    </div>
-                                    <div className="name-phone input">
                                         <div className="name label">
                                             <div><p>Họ và tên:</p></div>
                                             <input type="text" name="name" onChange={(event) => this.isChange2(event)}/>
                                         </div>
                                         <div className="phone label">
                                             <div><p>Số điện thoại:</p></div>
-                                            <input type="tel" id="phone" />
+                                            <input name='sdt' type="tel"  />
                                         </div>
+                                        
+                                        
+                                    </div>
+                                    <div className="name-phone input">
+                                        <div className="stk label" style={{flex:'1'}}>
+                                            <div><p>Dịch vụ:</p></div>
+                                            <div className="time input">
+                                                    <select defaultValue= "" name ="service">
+                                                        <option value = "">---Select--- </option>
+                                                        {/* <option value = {`{"name" :"${this.props.temInfo.wedding_hall}"}.`}>---TIẾT MỤC KHAI TIỆC </option> */}
+                                                        <option value = "{name : TRANH KÝ TÊN },">---TRANH KÝ TÊN</option>
+                                                    </select>
+                                                </div>
+                                        </div>
+                                        <div className="time-date label" style={{flex:'1'}}>
+                                                <div><p>Sảnh tiệc:</p></div>
+                                                <div className="time input">
+                                                    <select defaultValue= "" name ="wedding_hall" onChange={(event) => this.isChange2(event)}>
+                                                        <option value = "">---Select--- </option>
+                                                        <option value = "1">SảnhI </option>
+                                                        <option value = "2">SảnhII </option>
+                                                        <option value="3">SảnhIII</option>
+                                                        <option value="4">SảnhIII</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                     </div>
                                     <div className=" input">
-                                        <div >
-                                            <div className="lobby label">
-                                                <div><p>Sảnh tiệc:</p></div>
-                                                <input type="number"  name="hall" onChange={(event) => this.isChange2(event)}/>
-                                            </div>
-                                            <div className="time-date label">
+                                        <div className="nCustomer label" style={{flex:'1'}}>
+                                            <div><p>Menu:</p></div>
+                                            <div className="time input">
+                                                    <select defaultValue= "" name ="menu" onChange={(event) => this.isChange2(event)}>
+                                                        <option value = "">---Select--- </option>
+                                                        <option value = "1">Menu1 </option>
+                                                        <option value = "2">Menu2 </option>
+                                                        <option value = "3">Menu3 </option>
+                                                        <option value="4">Menu4</option>
+                                                    </select>
+                                                </div>
+                                        </div>
+                                            
+                                            <div className="time-date label" style={{flex:'1'}}>
                                                 <div><p>Thời gian:</p></div>
                                                 <div className="time input">
                                                     <select defaultValue= "" name ="shift" onChange={(event) => this.isChange2(event)}>
-                                                        <option value = "">Ca </option>
-                                                        <option value = "Ca sáng">Ca sáng </option>
-                                                        <option value = "Ca trưa">Ca trưa </option>
-                                                        <option value="Ca tối">Ca tối</option>
+                                                        <option value = "">---Ca--- </option>
+                                                        <option value = "1">Ca sáng </option>
+                                                        <option value = "2">Ca trưa </option>
+                                                        <option value="3">Ca tối</option>
                                                     </select>
                                                     <div className="date" style={{ marginTop: 0, width: '150px !important' }}>
-                                                        <input type="date"  name="date" onChange={(event) => this.isChange2(event)} style={{ width: '150px !important' }} />
+                                                        <input type="date"  name="organization_date" onChange={(event) => this.isChange2(event)} style={{ width: '132px ' }} />
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        
                                     </div>
                                     <div className="textarea label">
                                         <div className="submit">
@@ -166,7 +195,7 @@ class A_formRegister extends React.Component {
                                         <tbody>
                                             {arrayData.map(x => (
                                                 <A_Row name={x.name} stt={x.id} date={x.organization_date}
-                                                    shift={x.shift.name} wedding_hall={x.wedding_hall.name} />
+                                                    shift={x.shift.map(k => k.name)} wedding_hall={x.wedding_hall.name} />
                                             ))}
 
                                         </tbody>
