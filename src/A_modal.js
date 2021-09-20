@@ -42,7 +42,7 @@ class A_modal extends React.Component {
 
             <Form.Group as={Col} controlId="formGridShiff">
                 <Form.Label>Sảnh</Form.Label>
-                <Form.Control type="text" value = {`{"Sảnh" :"${this.props.temInfo.wedding_hall}"},`}/>
+                <Form.Control type="text" value = {`Sảnh ${this.props.temInfo.wedding_hall}`}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCity">
